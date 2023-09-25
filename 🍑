@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(FeatherNFinApp());
+}
+
+class FeatherNFinApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'featherNFin App',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
+      home: ProductListScreen(),
+    );
+  }
+}
+
+class ProductListScreen extends StatelessWidget {
+  // Sample product data for demonstration
+  final List<Product> products = [
+    Product('Fresh Chicken', 'Farm-fresh chicken', 'assets/chicken.jpg', 10.0),
+    Product('Tilapia Fish', 'Delicious tilapia', 'assets/fish.jpg', 8.0),
+    // Add more products here
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('featherNFin - Poultry & Fish Marketplace'),
+      ),
+      body: ListView.builder(
+        itemCount: products.length,
+        itemBuilder: (ctx, index) {
+          final product = products[index];
+          return ListTile(
+            leading: Image.asset(product.imagePath),
+            title: Text(product.name),
+            subtitle: Text('Price: \$${product.price.toStringAsFixed(2)}'),
+            trailing: ElevatedButton(
+              onPressed: () {
+                // Implement order logic here
+              },
+              child: Text('Order'),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+}
